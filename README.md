@@ -6,13 +6,13 @@ This project implements a Finite State Machine (FSM) to control the taillights o
 
 ## Objectives
 * Design and implement a Finite State Machine (FSM) to control the
-taillights of a Ford Thunderbird.
+taillights of a Ford Thunderbird
 * Simulate realistic automotive lighting behavior using digital logic on an FPGA platform.
 * Demonstrate how sequential logic (memory elements) and combinational logic
-work together to produce controlled and time-dependent behavior.
-* Brake, hazard, left turn signal, right turn signal, and reset are simulated using LEDs and push buttons.
-* Priority handling is demonstrated as follows: reset → brake → hazard → turn signals.
-* The FSM controls lighting patterns based on driver inputs and displays the current operating mode on a 7-segment display.
+work together to produce controlled and time-dependent behavior
+* Brake, hazard, left turn signal, right turn signal, and reset are simulated using LEDs and push buttons
+* Priority handling is demonstrated as follows: reset → brake → hazard → turn signals
+* The FSM controls lighting patterns based on driver inputs and displays the current operating mode on a 7-segment display
 
 ## Input/Output Description
 
@@ -37,14 +37,14 @@ Each side of the vehicle contains three LEDs, each of which have their own state
 
 On the vehicle, the taillights are placed as so:
 
-| L3 | L2 | L1 | R1 | R2 | R3 |
+|&emsp; L3 &emsp;|&emsp; L2 &emsp;|&emsp; L1 &emsp;|&emsp; R1 &emsp;|&emsp; R2 &emsp;|&emsp; R3 &emsp;|
 
 ## System Behavior
 ### Priority Handling
 * Reset → Brake → Hazard → Turn Signals (left/right)
 
 ### Mode Descriptions
-|Mode → |  Reset   |  Left Turn   |   Right Turn    |    Hazard   |   Brake    |
+|Mode: → |  Reset   |  Left Turn   |   Right Turn    |    Hazard   |   Brake    |
 |----------|--------------|-----------------|-------------|------------|------------|
 | Occurs when: | reset = 1  | left = 1  | right = 1  | left AND right = 1  | brake = 1  |
 | Lighting Behavior: |All lights OFF|L1 → L1 + L2 → L1 + L2 + L3|R1 → R1 + R2 → R1 + R2 + R3|L1 + R1 → L1 + L2 + R1 + R2 → L1 + L2 + L3 + R1 + R2 + R3|All lights ON simultaneously|
@@ -55,10 +55,6 @@ On the vehicle, the taillights are placed as so:
 * Outputs depend only on current state, not previous inputs
 * Each state represents a different step in the light sequence
 * State transitions coincide with the rising edge of the clock
-
-### State Flow Chart
-<img src="https://github.com/user-attachments/assets/666b2775-22b1-4d29-b3f3-88f1214ebd81" width="500">
-
 
 ## Clock Divider
 The FPGA clock is divided using a clock divider module to slow down state transitions so that:
